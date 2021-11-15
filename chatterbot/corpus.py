@@ -51,9 +51,7 @@ def read_corpus(file_name):
         with io.open(file_name, encoding='utf-8') as data_file:
             return yaml.safe_load(data_file)
     except FileNotFoundError:
-        main(["install", "https://github.com/ElissonRodrigues/chatterbot-corpus/archive/refs/heads/master.zip"])
-        with io.open(file_name, encoding='utf-8') as data_file:
-            return yaml.safe_load(data_file)
+        raise Exception('chatterbot-corpus is not installed, use the command: "pip3 https://github.com/ElissonRodrigues/ChatterBot/archive/refs/heads/master.zip" to install')
 
 def list_corpus_files(dotted_path):
     """
