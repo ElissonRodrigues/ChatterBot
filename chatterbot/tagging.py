@@ -18,19 +18,24 @@ class PosLemmaTagger(object):
 
     def __init__(self, language=None):
         import spacy
+        from spacy.cli import download
 
         self.language = language or languages.ENG
 
         self.punctuation_table = str.maketrans(dict.fromkeys(string.punctuation))
 
-        try:
-            if self.language.ISO_639_1.lower() == 'en':
+        
+        if self.language.ISO_639_1.lower() == 'en':
+            try:
                 self.nlp = spacy.load('en_core_web_sm')
-            else:
-                self.nlp = spacy.load(self.language.ISO_639_1.lower())
-        except OSError:
-            raise Exception('The "en_core_web_sm" has not been downloaded, use the command: "python -m spacy download en_core_web_sm" to download.')
+            except OSError:
+                download("en_core_web_sm")
+            finally:
+                self.nlp = spacy.load('en_core_web_sm')
             
+        else:
+            self.nlp = spacy.load(self.language.ISO_639_1.lower())
+        
     def get_text_index_string(self, text):
         """
         Return a string of text containing part-of-speech, lemma pairs.
