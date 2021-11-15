@@ -29,7 +29,7 @@ class PosLemmaTagger(object):
             else:
                 self.nlp = spacy.load(self.language.ISO_639_1.lower())
         except OSError:
-            raise 'The "en_core_web_sm" has not been downloaded, use the command: "python -m spacy download en_core_web_sm" to download.'
+            raise Exception('The "en_core_web_sm" has not been downloaded, use the command: "python -m spacy download en_core_web_sm" to download.')
             
     def get_text_index_string(self, text):
         """
