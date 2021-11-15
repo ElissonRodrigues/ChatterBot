@@ -30,7 +30,6 @@ class PosLemmaTagger(object):
                 self.nlp = spacy.load('en_core_web_sm')
             except OSError:
                 download("en_core_web_sm")
-            finally:
                 self.nlp = spacy.load('en_core_web_sm')
             
         else:
