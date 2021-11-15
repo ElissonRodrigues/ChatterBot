@@ -1,6 +1,7 @@
 import os
 import io
 import glob
+import yaml
 from pathlib import Path
 from chatterbot.exceptions import OptionalDependencyImportError
 
